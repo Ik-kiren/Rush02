@@ -80,36 +80,46 @@ void ft_revstr(char *str)
 	}
 }
 
-void writenbr(int nb, char *str)
+void writenbr(char *file, char *str)
 {
 	int i;
+	int j;
 	int b;
 	char cnb;
 
 	i = 0;
-	cnb = nb + '0';
+	j = 0;
 	b = 0;
 	while (str[i])
 	{
-		if (str[i] == cnb)
+		j = 0;
+		b = 0;
+		while (file[j])
 		{
-			while(str[i])
+			//ft_putchar(file[j]);
+			if (str[i] == file[j])
 			{
-				if (str[i] > 96 && str[i] < 123)
+				//ft_putchar(str[i]);
+				//ft_putchar(file[j]);
+				while(file[j])
 				{
-					ft_putchar(str[i]);
-					if (str[i + 1] <= 96 || str[i + 1] >= 123)
-					{	
-						b = 1;
-						break;
+					if (file[j] > 96 && file[j] < 123)
+					{
+						ft_putchar(file[j]);
+						if (file[j + 1] <= 96 || file[j + 1] >= 123)
+						{	
+							b = 1;
+							break;
+						}
 					}
+					j++;
 				}
-				i++;
 			}
-		}
-		if(b == 1)
-		{
-			break;
+			if(b == 1)
+			{
+				break;
+			}
+			j++;
 		}
 		i++;
 	}
@@ -135,10 +145,10 @@ int main()
 		return (1);
 	}
 	buff[ret] = '\0';
-	writenbr(11, buff);
 	close(fd);
 
-	ft_strcpy(tab, ft_putnbr(12345));
-	ft_revstr(tab);
-	ft_putstr(tab);
+	ft_strcpy(tab, "210016");
+	//ft_revstr(tab);
+	//ft_putstr(tab);
+	writenbr(buff, tab);
 }
